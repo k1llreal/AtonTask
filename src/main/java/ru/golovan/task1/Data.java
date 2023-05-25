@@ -1,5 +1,7 @@
 package ru.golovan.task1;
 
+import java.util.Objects;
+
 public class Data {
     private long account;
     private String name;
@@ -33,5 +35,18 @@ public class Data {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Data data = (Data) o;
+        return account == data.account && Double.compare(value, data.value) == 0 && Objects.equals(name, data.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(account, name, value);
     }
 }
